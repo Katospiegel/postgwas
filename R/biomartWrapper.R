@@ -1,7 +1,7 @@
 biomartConfigs <- list(
 hsapiens = list(
   snp = list(
-    host = "www.biomart.org",  
+    host = "www.ensembl.org",  
     mart = "snp", 
     dataset = "hsapiens_snp", 
     filter = list(
@@ -12,7 +12,7 @@ hsapiens = list(
       bp = "chrom_start")
   ), 
   gene = list(
-    host = "www.biomart.org",
+    host = "www.ensembl.org",
     mart = "ensembl",
     dataset = "hsapiens_gene_ensembl", 
     filter = list(
@@ -43,7 +43,7 @@ hsapiens = list(
       gene.endbp = "end_position")
   ), 
   path = list(
-      host = "www.biomart.org",
+      host = "www.ensembl.org",
       mart = "REACTOME", 
       dataset = "pathway", 
       filter = list(
@@ -58,7 +58,7 @@ hsapiens = list(
           pathname = "_displayname")
   ), 
   proteincomplex = list(
-      host = "www.biomart.org",
+      host = "www.ensembl.org",
       mart = "REACTOME", 
       dataset = "complex", 
       filter = list(
@@ -71,7 +71,7 @@ hsapiens = list(
 ), 
 athaliana = list(
     snp = list(
-        host = "www.biomart.org",
+        host = "www.ensembl.org",
         mart = "plants_variations_16", 
         dataset = "athaliana_eg_snp", 
         filter = list(
@@ -82,7 +82,7 @@ athaliana = list(
             bp = "chrom_start")
     ), 
     gene = list(
-        host = "www.biomart.org",
+        host = "www.ensembl.org",
         mart = "plants_mart_16",
         dataset = "athaliana_eg_gene", 
         filter = list(
@@ -113,7 +113,7 @@ athaliana = list(
             gene.endbp = "end_position")
     ), 
     path = list(
-        host = "www.biomart.org",
+        host = "www.ensembl.org",
         mart = "REACTOME", 
         dataset = "pathway", 
         filter = list(
@@ -124,7 +124,7 @@ athaliana = list(
             pathname = "_displayname")
     ), 
     proteincomplex = list(
-        host = "www.biomart.org",
+        host = "www.ensembl.org",
         mart = "REACTOME", 
         dataset = "complex", 
         filter = list(
@@ -137,7 +137,7 @@ athaliana = list(
 ),
 scerevisiae = list(
   snp = list(
-    host = "www.biomart.org",
+    host = "www.ensembl.org",
     mart = "snp", 
     dataset = "scerevisiae_snp", 
     filter = list(
@@ -148,7 +148,7 @@ scerevisiae = list(
       bp = "chrom_start")
   ), 
   gene = list(
-    host = "www.biomart.org",
+    host = "www.ensembl.org",
     mart = "ensembl",
     dataset = "scerevisiae_gene_ensembl", 
     filter = list(
@@ -179,7 +179,7 @@ scerevisiae = list(
       gene.endbp = "end_position")
   ), 
   path = list(
-      host = "www.biomart.org",
+      host = "www.ensembl.org",
       mart = "REACTOME", 
       dataset = "pathway", 
       filter = list(
@@ -190,7 +190,7 @@ scerevisiae = list(
           pathname = "_displayname")
   ), 
   proteincomplex = list(
-      host = "www.biomart.org",
+      host = "www.ensembl.org",
       mart = "REACTOME", 
       dataset = "complex", 
       filter = list(
@@ -288,7 +288,7 @@ bm.init.snps <- function(species = NULL) {
   }
 
   message("Initializing biomart connection (SNPs)...")
-  ds <- useMart(biomart = config$snp$mart, dataset = config$snp$dataset, host = config$snp$host)
+  ds <- useEnsembl(biomart = config$snp$mart, dataset = config$snp$dataset, host = config$snp$host)
 
   # check attribs exist
   if(sum(listAttributes(ds)[, 1] %in% unlist(config$snp$attr)) < length(config$snp$attr)) 
@@ -316,7 +316,7 @@ bm.init.genes <- function(species = NULL) {
   }
 
   message("Initializing biomart connection (genes)...")
-  ds <- useMart(biomart = config$gene$mart, dataset = config$gene$dataset, host = config$gene$host)
+  ds <- useEnsembl(biomart = config$gene$mart, dataset = config$gene$dataset, host = config$gene$host)
 
   # check attribs exist
   if(sum(listAttributes(ds)[, 1] %in% unlist(config$gene$attr)) < length(config$gene$attr)) 
@@ -348,7 +348,7 @@ bm.init.path <- function(species = NULL) {
   }
   
   message("Initializing biomart connection (pathways)...")
-  ds <- useMart(biomart = config$path$mart, dataset = config$path$dataset, host = config$path$host)
+  ds <- useEnsembl(biomart = config$path$mart, dataset = config$path$dataset, host = config$path$host)
   
   # check attribs exist
   if(sum(listAttributes(ds)[, 1] %in% unlist(config$path$attr)) < length(config$path$attr)) 
@@ -378,7 +378,7 @@ bm.init.proteincomplex <- function(species = NULL) {
   }
   
   message("Initializing biomart connection (protein interaction)...")
-  ds <- useMart(biomart = config$proteincomplex$mart, dataset = config$proteincomplex$dataset, host = config$proteincomplex$host)
+  ds <- useEnsembl(biomart = config$proteincomplex$mart, dataset = config$proteincomplex$dataset, host = config$proteincomplex$host)
   
   # check attribs exist
   if(sum(listAttributes(ds)[, 1] %in% unlist(config$proteincomplex$attr)) < length(config$proteincomplex$attr)) 
